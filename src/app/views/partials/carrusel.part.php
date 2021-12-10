@@ -2,6 +2,9 @@
    <div class="col-md-12">
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
          <ol class="carousel-indicators">
+            <?php for ($c = 0; $c <count($carrusel); $c++) : ?>
+                <li data-target="#carousel-example-generic" data-slide-to="<?=$c>" class="<?=($c == 0 ? 'active' : '')"></li> 
+            <?php endfor ?>
             <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
             <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
             <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
