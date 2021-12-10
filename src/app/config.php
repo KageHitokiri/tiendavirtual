@@ -2,8 +2,8 @@
 return [
     'database' => [
         'name' => 'tienda',
-        'username' => 'root',
-        'password' => 'sa',
+        'username' => 'tienda',
+        'password' => 'tienda',
         'connection' => 'mysql:host=localhost',
         'options' => [
             PDO::MYSQL_ATTR_INIT_COMMAND=> 'SET NAMES utf8',
