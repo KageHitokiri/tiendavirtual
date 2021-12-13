@@ -14,4 +14,9 @@ class ProductRepository extends QueryBuilder
         $sql = "SELECT * FROM $this->table WHERE carrusel IS NOT NULL AND carrusel != ''";
         return $this->executeQuery($sql);
     }
+
+    public function getDestacados(){
+        $sql = "SELECT *  FROM $this->table WHERE destacado = 1";
+        return $this->executeQuery($sql);
+    }
 }
