@@ -10,7 +10,7 @@ class ProductRepository extends QueryBuilder
         parent::__construct('productos', 'Product');
     }
 
-    public function getCarrusel() {
+    public function getCarrusel():array {
         $sql = "SELECT * FROM $this->table WHERE carrusel IS NOT NULL AND carrusel != ''";
         return $this->executeQuery($sql);
     }
