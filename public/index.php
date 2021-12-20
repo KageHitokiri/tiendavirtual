@@ -3,6 +3,7 @@ session_start();
 require __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../src/core/bootstrap.php';
 
+use ProyectoWeb\app\controllers\admin\CategoryController;
 use ProyectoWeb\app\controllers\ProductController;
 use Slim\Views\PhpRenderer;
 use ProyectoWeb\app\controllers\PageController;
@@ -30,5 +31,7 @@ $app->map(['GET', 'POST'], '/register', UserController::class . ':register');
 $app->get('/logout', UserController::class . ':logout');
 
 $app->get('/producto/{nombre}/{id:[0-9]+}', ProductController::class . ':ficha')->setName('ficha');
+
+$app->get("/categoria/{nombre}/{id:[0-9]+}", CategoryController::class . "listado")->setName("categoria");
 
 $app->run();

@@ -15,5 +15,6 @@ return [
         'settings' => [
             'displayErrorDetails' => true //False en produccción
         ],
-    ]
+    ],
+    'itemsPerPage' =>3
 ];

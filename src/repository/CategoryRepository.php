@@ -8,4 +8,5 @@ class CategoryRepository extends QueryBuilder
     public function __construct(){
         parent::__construct('categorias', 'Category');
     }
+
 }

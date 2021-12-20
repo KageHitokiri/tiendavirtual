@@ -29,4 +29,16 @@ class ProductRepository extends QueryBuilder
         $sql = "SELECT * FROM $this->table WHERE id_categoria = $id_categoria AND id!= $id ORDER BY RAND() LIMIT 6" ;
         return $this->executeQuery($sql);
     }
+
+    public function getByCategory(int $id_categoria) {
+        $sql = "SELECT * FROM $this->table WHERE id_categoria = $id_categoria";
+        return $this->executeQuery($sql);
+    }
+
+    public function getCountByCategory(int $id_categoria): int {
+        $sql = "SELECT count(*) as cuenta FROM $this->table WHERE id_categoria = $id_categoria";
+        $statement = $this->connection->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(\PDO::FETCH_ASSOC)["cuenta"];
+    }
 }
