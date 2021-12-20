@@ -8,7 +8,7 @@ class ProductRepository extends QueryBuilder
 {
     public function __construct(){
         parent::__construct('productos', 'Product');
-    }
+    }        
 
     public function getCarrusel():array {
         $sql = "SELECT * FROM $this->table WHERE carrusel IS NOT NULL AND carrusel != ''";
@@ -30,8 +30,9 @@ class ProductRepository extends QueryBuilder
         return $this->executeQuery($sql);
     }
 
-    public function getByCategory(int $id_categoria) {
+    public function getByCategory(int $id_categoria, int $itemsPerPage, int $currentPage) {
         $sql = "SELECT * FROM $this->table WHERE id_categoria = $id_categoria";
+        $sql .= " LIMIT $itemsPerPage OFFSET ". $itemsPerPage * ($currentPage-1);
         return $this->executeQuery($sql);
     }
 

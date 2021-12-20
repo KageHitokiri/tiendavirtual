@@ -6,8 +6,10 @@
     use ProyectoWeb\exceptions\QueryException;
     use ProyectoWeb\exceptions\NotFoundException;
     use ProyectoWeb\database\Connection;
-use ProyectoWeb\repository\CategoryRepository;
-use ProyectoWeb\repository\ProductRepository;
+    use ProyectoWeb\repository\CategoryRepository;
+    use ProyectoWeb\repository\ProductRepository;
+    use ProyectoWeb\core\App;
+    use JasonGrimes\Paginator;
 
     class CategoryController {
         protected $container;
@@ -30,14 +32,24 @@ use ProyectoWeb\repository\ProductRepository;
             $title = $categoriaActual->getNombre();
 
             $repositorioProductos = new ProductRepository();
-            $productos = $repositorioProductos->getByCategory($categoriaActual->getId());
+            ($categoriaActual->getId());
+
+            
+            
+            $currentPage = ($currentPage ?? 1);
+            $totalItems = $repositorioProductos->getCountByCategory($categoriaActual->getId());
+            $itemsPerPage = App::get("config")['itemsPerPage'];
+            $urlPattern = $this->container->router->pathFor('categoria',[
+                'nombre' => \ProyectoWeb\app\utils\Utils::encodeURI($categoriaActual->getNombre()), 
+                'id' => $categoriaActual->getId()]).'/page/(:num)';
+
+            $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+            
+            $productos = $repositorioProductos->getByCategory($categoriaActual->getId(),$itemsPerPage, $currentPage);
 
             $categorias = $repositorio->findAll();
-            $currentPage = ($currentPage ?? 1);
 
-            $this->container->router->pathFor('categoria',['nombre' => \ProyectoWeb\app\utils\Utils::encodeURI($categoriaActual->getNombre()), 'id' => $categoriaActual->getId()]).'/page/(:num)';
-
-            return $this->container->renderer->render($response, "categoria.view.php", compact("title","categorias","categoriaActual","productos"));
+            return $this->container->renderer->render($response, "categoria.view.php", compact("title","categorias","categoriaActual","productos",'paginator'));
 
         }
     }
