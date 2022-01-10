@@ -12,6 +12,6 @@
             <p><?= $producto->getDescripcion()?></p>
         </div>
         <h4 class="pull-right"><span class="text text-danger"><?=number_format($producto->getPrecio(),2,"'","")?> €</span></h4>
-        <a href="#" class="btn btn-danger">Comprar</a>
+        <a href='<?=$router->pathFor('cart-add',['id'=> $producto->getId()])?>'  class="btn btn-danger">Comprar</a>
     </div>
 </div>

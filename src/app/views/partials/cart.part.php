@@ -1,12 +1,12 @@
 <div class="row carro">
-  <h2 class="subtitle" style="margin:0;">Carrito de la compra</h2>
+  <h2 class="subtitle" style="margin:0;">Carrazo de la compra</h2>
   <table class="table">
     <thead>
       <tr>
         <th>#</th>
-        <th>Producto</th>
-        <th>Cantidad</th>
+        <th>Producto</th>        
         <th>Precio</th>
+        <th>Cantidad</th>
         <th>Total</th>
       </tr>
     </thead>
@@ -40,7 +40,7 @@
       </tr>
       <tr>
         <td colspan="3"><a class="btn btn-danger" href="#">Finalizar compra</a></td>
-        <td colspan="2"><a class="btn btn-danger" href="#">Vaciar Carrito</a></td>
+        <td colspan="2"><a class="btn btn-danger" href="<?=$router->pathFor('cart-empty')?>" onclick="return confirmEmptyCart();">Vaciar Carrito</a></td>
       </tr>
     </tfoot>
     <?php endif ?>
